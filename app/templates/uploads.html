@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+
+{% block main %}
+<h1 class="page-header">Files Uploaded</h1>
+
+<ul class="list">
+    {% for file in filelist %}
+        <li class="list">
+            {% if file.rsplit('.', 1)[1].lower() == 'jpg' or file.rsplit('.', 1)[1].lower() == 'jpeg' %}
+            <figure class="pic">
+                <img src={{ url_for('static',filename= "uploads/"+ file )}} alt={{ file }} class="figure-img img-thumbnail" height="300" width="300">
+                <figcaption class="pics"><a href={{ url_for('static',filename= "uploads/" + file )}}>{{ file }}</a></figcaption>
+            </figure>
+        {% else %}
+             <a href={{ url_for('static',filename= "uploads/" + file) }}>{{file}}</a>
+        {% endif %}
+        </li>
+    {% endfor %}
+</ul>
+
+{% endblock %}
